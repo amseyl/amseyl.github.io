@@ -11,7 +11,8 @@
     const start = new Date().getTime()
     let param = getQueryVariable('uuid')
     if (param === undefined) {
-        openUrl("http://5v-v.com?message=未知的用户跳转")
+        openUrl("https://www.baidu.com")
+        return
     }
 
     var ua = navigator.userAgent.toLowerCase();
@@ -19,10 +20,10 @@
     var isStartBrowser = false
     var isTwoTo = false
     let url = window.location.href
-    if (param.indexOf("to5vUrl") != -1) {
-        isTwoTo = true
-        param = param.split("to5vUrl")[0]
-    }
+    // if (param.indexOf("to5vUrl") != -1) {
+    //     isTwoTo = true
+    //     param = param.split("to5vUrl")[0]
+    // }
 
     function getQueryVariable(variable) {
         var query = window.location.search.substring(1);
@@ -33,6 +34,7 @@
         }
         return
     }
+
     if (param.indexOf("http") == 0) {
         let toUrl = decodeURIComponent(param)
         openUrl(toUrl)
@@ -43,7 +45,7 @@
     function openAppReq() {
         const ajaxObj = new XMLHttpRequest();
         const startApi = new Date().getTime()
-        ajaxObj.open('get', 'https://55.5v-v.com/jeecg-boot/usa/userApp/client/' + param);
+        ajaxObj.open('get', 'http://138.68.234.227:8000/api/v1/short_chain/public/targets/?short_chain_uuid=' + param);
         ajaxObj.send();
         ajaxObj.onreadystatechange = function () {
             if (ajaxObj.readyState == 4 && ajaxObj.status == 200) {
@@ -52,13 +54,13 @@
                 const value = JSON.parse(val)
                 console.log("接口访问耗时", (new Date().getTime() - startApi) + "ms")
 
-                if (value.code == 200) {
-                    if (value.result != null && value.result.userType == "VIP" && value.result.isStartBrowser) {
-                        isStartBrowser = true
-                    }
-                } else {
-                    openUrl("http://5v-v.com?message=网络不好！")
+                if (value.code != 200) {
+                    openUrl("http://www.baidu.com?message=网络不好!")
                     return
+                }
+
+                if (value.result != null && value.result.isStartBrowser) {
+                    isStartBrowser = true
                 }
 
                 if (isStartBrowser && isTk && !isTwoTo) {
@@ -81,7 +83,7 @@
 
     function toAppUrl(value) {
         if (value === undefined || value == null) {
-            openUrl("http://5v-v.com?message=未知的用户跳转")
+            openUrl("https://laughtermovie.com/?message=未知的用户跳转")
             return
         }
 
