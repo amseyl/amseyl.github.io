@@ -45,7 +45,7 @@
     function openAppReq() {
         const ajaxObj = new XMLHttpRequest();
         const startApi = new Date().getTime()
-        ajaxObj.open('get', 'http://138.68.234.227:8000/api/v1/short_chain/public/targets/?short_chain_uuid=' + param);
+        ajaxObj.open('get', 'https://shortchainadminapi.laughtermovie.com/api/v1/short_chain/public/targets/?short_chain_uuid=' + param);
         ajaxObj.send();
         ajaxObj.onreadystatechange = function () {
             if (ajaxObj.readyState == 4 && ajaxObj.status == 200) {
@@ -56,7 +56,6 @@
 
                 if (value.code != 200) {
                     openUrl("http://www.baidu.com?message=网络不好!")
-                    return
                 }
 
                 if (value.result != null && value.result.isStartBrowser) {
