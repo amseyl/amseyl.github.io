@@ -10,6 +10,7 @@
 
     const start = new Date().getTime()
     let param = getQueryVariable('uuid')
+    console.log(param)
     if (param === undefined) {
         openUrl("https://www.baidu.com")
         return
