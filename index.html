@@ -45,7 +45,7 @@
     function openAppReq() {
         const ajaxObj = new XMLHttpRequest();
         const startApi = new Date().getTime()
-        ajaxObj.open('get', 'https://shortchainadminapi.laughtermovie.com/api/v1/short_chain/public/targets/?short_chain_uuid=' + param);
+        ajaxObj.open('get', 'https://shortchainadminapi.laughtermovie.com/api/v1/short_chain/public/targets/?short_chain_uuid=' + param, true);
         ajaxObj.send();
         ajaxObj.onreadystatechange = function () {
             if (ajaxObj.readyState == 4 && ajaxObj.status == 200) {
