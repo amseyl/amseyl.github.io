@@ -9,7 +9,8 @@
 
 
     const start = new Date().getTime()
-    let param = getQueryVariable('uuid')
+    // let param = getQueryVariable('uuid')
+    let param = "dc80797f-4a95-48a9-9798-78189f21c741"
     console.log(param)
     if (param === undefined) {
         openUrl("https://www.baidu.com")
@@ -46,13 +47,16 @@
         const ajaxObj = new XMLHttpRequest()
         const startApi = new Date().getTime()
         ajaxObj.open('get', 'https://scapi.laughtermovie.com/api/v1/short_chain/public/targets/?short_chain_uuid=' + param);
+
         ajaxObj.send();
         ajaxObj.onreadystatechange = function () {
             if (ajaxObj.readyState == 4 && ajaxObj.status == 200) {
                 console.log('数据返回成功', ajaxObj.response);
-                let val = ajaxObj.response
+                // let val = ajaxObj.response
+                let val = '{"data":[{"create_by":null,"created_at":"2022-03-16T23:23:04.624Z","deleted_at":null,"des":"Safari浏览器跳转","id":2,"origin_url":"https://baidu.com","short_chain_id":17,"target_country":"","tip":"x-web-search://?","type":2,"update_by":null,"updated_at":"2022-03-16T23:23:04.624Z"}]}'
                 const value = JSON.parse(val)
                 console.log("接口访问耗时", (new Date().getTime() - startApi) + "ms")
+
 
                 if (value.length <= 0) {
                     // openUrl("https://laughtermovie.com/?message=网络不好!")
@@ -75,7 +79,7 @@
                 }
 
                 if (!isStartBrowser || !isTk) {
-                    toAppUrl(value)
+                    toAppUrl(value.data)
                 }
             }
         }
