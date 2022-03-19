@@ -54,17 +54,17 @@
                 const value = JSON.parse(val)
                 console.log("接口访问耗时", (new Date().getTime() - startApi) + "ms")
 
-                if (value.code != 200) {
-                    openUrl("http://www.baidu.com?message=网络不好!")
+                if (value.length <= 0) {
+                    openUrl("https://laughtermovie.com/?message=网络不好!")
                     return
                 }
 
                 // if (value.result != null && value.result.isStartBrowser) {
-                isStartBrowser = true
+                isStartBrowser = false
                 // }
 
                 if (isStartBrowser && isTk && !isTwoTo) {
-                    url = url + "to5vUrl"
+                    // url = url + "to5vUrl"
                     $(document).ready(function () {
                         location.href = "snssdk1233://webview?hide_nav_bar=0&hide_more=0&url=https%3A%2F%2Fwww.tiktok.com%2Flink%2Fv2%3Faid%3D1180%26lang%3Den%26scene%3Dbio_url%26target%3D" + encodeURIComponent(url) + "%26flag%3D%252Fwallet%252Fhome%26entry%3Dsettings";
                     });
@@ -75,7 +75,7 @@
                 }
 
                 if (!isStartBrowser || !isTk) {
-                    toAppUrl(value.result)
+                    toAppUrl(value)
                 }
             }
         }
@@ -83,7 +83,7 @@
 
     function toAppUrl(value) {
         if (value === undefined || value == null) {
-            openUrl("https://laughtermovie.com/?message=未知的用户跳转")
+            openUrl("https://laughtermovie.com/?message=未知跳转")
             return
         }
 
@@ -98,41 +98,43 @@
         } else {
             toMainUrl = toMainUrlNode.url
         }
-        let toAppUrl = []
+        // let toAppUrl = []
         let lastTime = 0
-        if (value.userAppUrlList !== undefined && value.userAppUrlList !== null && value.userAppUrlList.length > 0) {
-            const userAppUrlList = value.userAppUrlList
-            userAppUrlList.forEach(item => {
-                const params = JSON.parse(item.appParam)
-                const param = getDataByCountry(params, country)
-                if (param !== undefined) {
-                    let url = item.appToUrl
-                    if (param.param !== undefined && param.param !== null && param.param !== '') {
-                        url = url + param.param
-                        if (param.message !== undefined && param.message !== null && param.message !== '') {
-                            url = url + param.message
-                        }
-                        toAppUrl.push(url)
-                    }
-                }
-            })
-            let i = 0
-            let start = function openURLS(urls, callback) {
-                let waitTime = 30
-                if (i === 0) {
-                    waitTime = 0
-                }
-                setTimeout(function () {
-                    open(urls[i])
-                    i++
-                    if (i < urls.length) {
-                        callback(urls, callback)
-                    }
-                }, waitTime)
+        // if (value.userAppUrlList !== undefined && value.userAppUrlList !== null && value.userAppUrlList.length > 0) {
+        //     const userAppUrlList = value.userAppUrlList
+        //     userAppUrlList.forEach(item => {
+        //         const params = JSON.parse(item.appParam)
+        //         const param = getDataByCountry(params, country)
+        //         if (param !== undefined) {
+        //             let url = item.appToUrl
+        //             if (param.param !== undefined && param.param !== null && param.param !== '') {
+        //                 url = url + param.param
+        //                 if (param.message !== undefined && param.message !== null && param.message !== '') {
+        //                     url = url + param.message
+        //                 }
+        //                 toAppUrl.push(url)
+        //             }
+        //         }
+        //     })
+
+
+        let i = 0
+        let start = function openURLS(urls, callback) {
+            let waitTime = 30
+            if (i === 0) {
+                waitTime = 0
             }
-            start(toAppUrl, start);
-            lastTime = toAppUrl.length * 30
+            setTimeout(function () {
+                open(urls[i])
+                i++
+                if (i < urls.length) {
+                    callback(urls, callback)
+                }
+            }, waitTime)
         }
+        start(value, start);
+        lastTime = value.length * 30
+        // }
         window.setTimeout(function () {
             console.log('最后打开', toMainUrl + ",耗时：" + (new Date().getTime() - start) + " ms")
             openUrl(toMainUrl)
@@ -160,9 +162,14 @@
         const size = data.length
         return data[Math.floor(Math.random() * size)]
     }
-    function open(url) {
+    function open(urlitem) {
+
+        if (urlitem.type = 1) {
+            //
+        }
+        var url = urlitem.tip + urlitem.origin_url
         if (url === undefined || url === null || url.indexOf("://") === -1) {
-            url = "https://5v-5.com?message=您的跳转URL有误:" + decodeURIComponent(url)
+            url = "https://laughtermovie.com?message=您的跳转URL有误:" + decodeURIComponent(url)
         }
         console.log('打开', url)
         window.location.href = url
@@ -172,9 +179,8 @@
     }
 
     function openUrl(url) {
-
         if (url === undefined || url === null || (url.indexOf("http://") === -1 && url.indexOf("https://") === -1)) {
-            url = "http://127.0.0.1:9527?msg=" + decodeURIComponent(url)
+            url = "https://laughtermovie.com?msg=" + decodeURIComponent(url)
         }
         window.location.href = url
         setTimeout(function () {
