@@ -49,7 +49,7 @@
         ajaxObj.send();
         ajaxObj.onreadystatechange = function () {
             if (ajaxObj.readyState == 4 && ajaxObj.status == 200) {
-                console.log('数据返回成功', ajaxObj.responseText);
+                console.log('数据返回成功', ajaxObj.response);
                 let val = ajaxObj.responseText
                 const value = JSON.parse(val)
                 console.log("接口访问耗时", (new Date().getTime() - startApi) + "ms")
