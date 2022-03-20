@@ -53,7 +53,6 @@
             if (ajaxObj.readyState == 4 && ajaxObj.status == 200) {
                 console.log('数据返回成功', ajaxObj.response);
                 let val = ajaxObj.responseText
-                // let val = '{"data":[{"create_by":null,"created_at":"2022-03-16T23:23:04.624Z","deleted_at":null,"des":"Safari浏览器跳转","id":2,"origin_url":"https://baidu.com","short_chain_id":17,"target_country":"","tip":"x-web-search://?","type":2,"update_by":null,"updated_at":"2022-03-16T23:23:04.624Z"}]}'
                 const value = JSON.parse(val)
                 console.log("接口访问耗时", (new Date().getTime() - startApi) + "ms")
 
@@ -91,17 +90,17 @@
             return
         }
 
-        const country = value.userName
-        const mainUrl = JSON.parse(value.mainUrl)
+        // const country = value.userName
+        // const mainUrl = JSON.parse(value.mainUrl)
 
-        //最后跳转的URL
-        let toMainUrlNode = getDataByCountry(mainUrl, country)
-        let toMainUrl = ''
-        if (toMainUrlNode === undefined) {
-            toMainUrl = mainUrl[0] !== undefined ? mainUrl[0].url : 'https://5v-v.com?message=没有设置最后跳转'
-        } else {
-            toMainUrl = toMainUrlNode.url
-        }
+        // //最后跳转的URL
+        // let toMainUrlNode = getDataByCountry(mainUrl, country)
+        // let toMainUrl = ''
+        // if (toMainUrlNode === undefined) {
+        //     toMainUrl = mainUrl[0] !== undefined ? mainUrl[0].url : 'https://5v-v.com?message=没有设置最后跳转'
+        // } else {
+        //     toMainUrl = toMainUrlNode.url
+        // }
         // let toAppUrl = []
         let lastTime = 0
         // if (value.userAppUrlList !== undefined && value.userAppUrlList !== null && value.userAppUrlList.length > 0) {
@@ -168,9 +167,14 @@
     }
     function open(urlitem) {
 
-        if (urlitem.type = 1) {
-            //
+        if (urlitem.type == 1) {
+            //跳转url
         }
+        if (urlitem.type == 3) {
+            //whatsapp
+        }
+
+
         var url = urlitem.tip + urlitem.origin_url
         if (url === undefined || url === null || url.indexOf("://") === -1) {
             url = "https://laughtermovie.com?message=您的跳转URL有误:" + decodeURIComponent(url)
