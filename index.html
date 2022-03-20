@@ -44,11 +44,8 @@
     }
 
     function openAppReq() {
-        let val = '{"data":[{"create_by":null,"created_at":"2022-03-16T23:23:04.624Z","deleted_at":null,"des":"Safari浏览器跳转","id":2,"origin_url":"https://baidu.com","short_chain_id":17,"target_country":"","tip":"x-web-search://?","type":2,"update_by":null,"updated_at":"2022-03-16T23:23:04.624Z"}]}'
-        const value = JSON.parse(val)
-        console.log(value)
-        const ajaxObj = new XMLHttpRequest()
 
+        const ajaxObj = new XMLHttpRequest()
         const startApi = new Date().getTime()
         ajaxObj.open('get', 'https://scapi.laughtermovie.com/api/v1/short_chain/public/targets/?short_chain_uuid=' + param);
         ajaxObj.setRequestHeader('content-type', 'application/json')
