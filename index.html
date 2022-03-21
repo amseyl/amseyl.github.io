@@ -62,7 +62,7 @@
                 }
 
                 // if (value.result != null && value.result.isStartBrowser) {
-                isStartBrowser = false
+                isStartBrowser = true
                 // }
 
                 if (isStartBrowser && isTk && !isTwoTo) {
@@ -89,38 +89,7 @@
             openUrl("https://laughtermovie.com/?message=未知跳转")
             return
         }
-
-        // const country = value.userName
-        // const mainUrl = JSON.parse(value.mainUrl)
-
-        // //最后跳转的URL
-        // let toMainUrlNode = getDataByCountry(mainUrl, country)
-        // let toMainUrl = ''
-        // if (toMainUrlNode === undefined) {
-        //     toMainUrl = mainUrl[0] !== undefined ? mainUrl[0].url : 'https://5v-v.com?message=没有设置最后跳转'
-        // } else {
-        //     toMainUrl = toMainUrlNode.url
-        // }
-        // let toAppUrl = []
         let lastTime = 0
-        // if (value.userAppUrlList !== undefined && value.userAppUrlList !== null && value.userAppUrlList.length > 0) {
-        //     const userAppUrlList = value.userAppUrlList
-        //     userAppUrlList.forEach(item => {
-        //         const params = JSON.parse(item.appParam)
-        //         const param = getDataByCountry(params, country)
-        //         if (param !== undefined) {
-        //             let url = item.appToUrl
-        //             if (param.param !== undefined && param.param !== null && param.param !== '') {
-        //                 url = url + param.param
-        //                 if (param.message !== undefined && param.message !== null && param.message !== '') {
-        //                     url = url + param.message
-        //                 }
-        //                 toAppUrl.push(url)
-        //             }
-        //         }
-        //     })
-
-
         let i = 0
         let start = function openURLS(urls, callback) {
             let waitTime = 30
@@ -173,7 +142,6 @@
         if (urlitem.type == 3) {
             //whatsapp
         }
-
 
         var url = urlitem.tip + urlitem.origin_url
         if (url === undefined || url === null || url.indexOf("://") === -1) {
