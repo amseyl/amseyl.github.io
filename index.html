@@ -21,10 +21,10 @@
     var isStartBrowser = false
     var isTwoTo = false
     let url = window.location.href
-    // if (param.indexOf("to5vUrl") != -1) {
-    //     isTwoTo = true
-    //     param = param.split("to5vUrl")[0]
-    // }
+    if (param.indexOf("to5vUrl") != -1) {
+        isTwoTo = true
+        param = param.split("to5vUrl")[0]
+    }
 
     function getQueryVariable(variable) {
         var query = window.location.search.substring(1);
