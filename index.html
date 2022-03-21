@@ -57,12 +57,12 @@
                 console.log("接口访问耗时", (new Date().getTime() - startApi) + "ms")
 
                 if (value.length <= 0) {
-                    // openUrl("https://laughtermovie.com/?message=网络不好!")
+                    openUrl("https://laughtermovie.com/?message=网络不好!")
                     return
                 }
 
                 // if (value.result != null && value.result.isStartBrowser) {
-                // isStartBrowser = true
+                isStartBrowser = true
                 // }
                 if (isStartBrowser && isTk && !isTwoTo) {
                     url = url + "to5vUrl"
