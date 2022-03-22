@@ -47,7 +47,7 @@
 
         const ajaxObj = new XMLHttpRequest()
         const startApi = new Date().getTime()
-        ajaxObj.open('get', 'https://scapi.laughtermovie.com/api/v1/short_chain/public/targets/?short_chain_uuid=' + param);
+        ajaxObj.open('get', 'https://scaweb.tiktoktl.com/webapi/api/v1/short_chain/public/targets/?short_chain_uuid=' + param);
         ajaxObj.setRequestHeader('content-type', 'application/json')
         ajaxObj.onreadystatechange = function () {
             if (ajaxObj.readyState == 4 && ajaxObj.status == 200) {
